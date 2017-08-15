@@ -3,12 +3,11 @@ class Api::V1::BooksController < Api::V1::ApiBaseController
 
   def index
     @books = Book.all
-
-    render json: @books
+    render json: @books, each_serializer: BookSerializer
   end
 
   def show
-    render json: @book
+    render json: @book, serializer: BookSerializer
   end
 
   def create

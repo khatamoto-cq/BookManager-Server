@@ -2,7 +2,7 @@ class Api::V1::BooksController < Api::V1::ApiBaseController
   before_action :set_book, only: [:show, :update]
 
   def index
-    @books = Book.all
+    @books = Book.all.page(params[:page])
     render json: @books, each_serializer: BookSerializer
   end
 

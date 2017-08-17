@@ -12,7 +12,7 @@ class Api::V1::BooksController < Api::V1::ApiBaseController
 
   def create
     @book = Book.new(book_params)
-
+    debugger
     if @book.save
       render json: @book, status: :created, location: @book
     else
@@ -34,6 +34,6 @@ class Api::V1::BooksController < Api::V1::ApiBaseController
   end
 
   def book_params
-    params.require(:book).permit(:image_url, :name, :price, :purchage_date)
+    params.require(:book).permit(:name, :price, :purchase_date, :image_data)
   end
 end

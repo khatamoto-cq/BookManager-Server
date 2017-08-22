@@ -1,4 +1,5 @@
 class Api::V1::BooksController < Api::V1::ApiBaseController
+  before_action :authenticate_user
   before_action :set_book, only: :update
 
   def index

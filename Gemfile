@@ -30,6 +30,7 @@ end
 
 group :test do
   gem 'simplecov', :require => false
+  gem 'rspec-json_matcher'
 end
 
 group :development do

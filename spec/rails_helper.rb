@@ -9,6 +9,9 @@ require 'rspec/rails'
 require 'simplecov'
 SimpleCov.start 'rails'
 
+require "rspec/json_matcher"
+RSpec.configuration.include RSpec::JsonMatcher
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

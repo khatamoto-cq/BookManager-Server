@@ -12,7 +12,6 @@ class Api::V1::BooksController < Api::V1::ApiBaseController
 
   def create
     @book = Book.new(book_params)
-    debugger
     if @book.save
       render json: @book, status: :created, location: @book
     else

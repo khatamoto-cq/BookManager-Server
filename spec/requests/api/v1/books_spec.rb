@@ -8,12 +8,23 @@ describe 'Books API', type: :request do
     book3 = create(:book, name: 'Kotlinスタートブック')
     book4 = create(:book, name: 'Effective Android')
     book5 = create(:book, name: 'ドメイン駆動設計')
-    @books = [book1, book2, book3, book4, book5]
+  end
+
+  let(:user) do
+    create(:user)
+  end
+
+  def authenticated_header
+    token = Knock::AuthToken.new(payload: { sub: user.id }).token
+    {
+      'Authorization': "Bearer #{token}"
+    }
   end
 
   describe "GET /api/v1/books" do
     it "populate all books to @books" do
-      get api_v1_books_path, headers: {'CONTENT_TYPE' => 'application/json', 'ACCEPT' => 'application/json'}
+      get api_v1_books_path, headers: authenticated_header
+      puts authenticated_header
       expect(response).to be_success
 
       json = JSON.parse(response.body).to_json
@@ -36,8 +47,9 @@ describe 'Books API', type: :request do
           price: 3980
         }
       }
+      puts authenticated_header
       expect{
-        post "/api/v1/books", params: post_attributes
+        post "/api/v1/books", params: post_attributes, headers: authenticated_header
       }.to change(Book, :count).by(1)
     end
   end
@@ -52,7 +64,7 @@ describe 'Books API', type: :request do
           purchase_date: '2017-12-24 12:01:01'
         }
       }
-      patch "/api/v1/books/#{book.id}", params: new_attributes
+      patch "/api/v1/books/#{book.id}", params: new_attributes, headers: authenticated_header
       expect(response).to be_success
 
       json = JSON.parse(response.body)

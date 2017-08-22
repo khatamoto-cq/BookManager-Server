@@ -5,7 +5,7 @@ class Book < ApplicationRecord
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
-  validates :purchase_date, date: true
+  validates :purchase_date, date: true, allow_blank: true
 
   before_save :decode_image
 

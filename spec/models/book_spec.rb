@@ -56,4 +56,15 @@ describe Book do
       end
     end
   end
+
+  describe "メール画像の登録" do
+    it "change encoded image with base64 to url" do
+      book = build(:book)
+      book.image_data = "dummy base64"
+      allow(book).to receive(:post).and_return('http://i.imgur.com/ttKTi1V.jpg')
+      book.save
+      book.reload
+      expect(book.image_url).to eq 'http://i.imgur.com/ttKTi1V.jpg'
+    end
+  end
 end

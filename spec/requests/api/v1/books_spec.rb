@@ -3,11 +3,11 @@ require 'rails_helper'
 describe 'Books API', type: :request do
 
   before :each do
-    book1 = create(:book)
-    book2 = create(:book, name: '初めてのPython')
-    book3 = create(:book, name: 'Kotlinスタートブック')
-    book4 = create(:book, name: 'Effective Android')
-    book5 = create(:book, name: 'ドメイン駆動設計')
+    create(:book)
+    create(:book, name: '初めてのPython')
+    create(:book, name: 'Kotlinスタートブック')
+    create(:book, name: 'Effective Android')
+    create(:book, name: 'ドメイン駆動設計')
   end
 
   let(:user) do
@@ -24,7 +24,6 @@ describe 'Books API', type: :request do
   describe "GET /api/v1/books" do
     it "populate all books to @books" do
       get api_v1_books_path, headers: authenticated_header
-      puts authenticated_header
       expect(response).to be_success
 
       json = JSON.parse(response.body).to_json
@@ -47,7 +46,6 @@ describe 'Books API', type: :request do
           price: 3980
         }
       }
-      puts authenticated_header
       expect{
         post "/api/v1/books", params: post_attributes, headers: authenticated_header
       }.to change(Book, :count).by(1)

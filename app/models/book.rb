@@ -16,7 +16,7 @@ class Book < ApplicationRecord
   private
     def post(encorded_image)
       response = RestClient.post(IMAGUR_URL, { image: encorded_image, type: 'base64' },
-                               { Authorization: "Client-ID #{Rails.application.secrets.imaur_client_id}"})
+                               { Authorization: "Client-ID #{Rails.application.secrets.imgur_client_id}"})
       return nil unless response.code == 200
 
       json = JSON.parse(response)

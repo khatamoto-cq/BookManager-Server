@@ -1,42 +1,37 @@
 # Usage
 
-## ログイン
-
-POST /api/v1/login
-
-### Body
-```
-{"auth": {"email": "your email", "password": "your password"}}
-```
-### Response
-```
-{
-    "jwt": "JSON Web Token"
-}
-```
-
-## ユーザ登録
-
-POST /api/v1/sign_up
-
+## ユーザ登録 (POST /api/v1/sign_up)
 ### Body
 ```
 {"email": "your email", "password": "your password"}
 ```
+
 ### Response
 ```
 {
     "jwt": "JSON Web Token"
 }
+```
 
-## 書籍情報取得
+## ログイン (POST /api/v1/login)
+### Body
+```
+{"auth": {"email": "your email", "password": "your password"}}
+```
 
-GET /api/v1/books
+### Response
+```
+{
+    "jwt": "JSON Web Token"
+}
+```
 
-### HEADER
+## 書籍情報取得 (GET /api/v1/books)
+### Header
 ```
 Authorization: Bearer `your json web token`
 ```
+
 ### Response
 ```
 [
@@ -57,3 +52,58 @@ Authorization: Bearer `your json web token`
 ]
 ```
 
+## 書籍登録 (/api/v1/books)
+### Header
+```
+Authorization: Bearer `your json web token`
+```
+
+### Body
+```
+{
+	"book": {
+		"name": "Kotlinスタートブック",
+		"price": 3400,
+		"purchase_date": "2017-08-29 19:30:12",
+		"image_data": "base64でエンコードされた文字列"
+  }
+}
+```
+
+### Response
+```
+{
+    "id": 29,
+    "image_url": "http://i.imgur.com/2ElUhgK.jpg",
+    "name": "Kotlinスタートブック",
+    "price": 3400,
+    "purchase_date": "2017-08-29T19:30:12.000Z"
+}
+```
+
+## 書籍編集 (/api/v1/books/id)
+### Header
+```
+Authorization: Bearer `your json web token`
+```
+
+### Body
+```
+{
+	"book": {
+		"name": "統計学は最強の学問である",
+		"price": 1280
+	}
+}
+```
+
+### Response
+```
+{
+    "id": 24,
+    "image_url": "http://i.imgur.com/2ElUhgK.jpg",
+    "name": "統計学は最強の学問である",
+    "price": 1280,
+    "purchase_date": "2017-08-29T19:30:12.000Z"
+}
+```

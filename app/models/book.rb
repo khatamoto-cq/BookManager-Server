@@ -1,6 +1,9 @@
 class Book < ApplicationRecord
   IMAGUR_URL = 'https://api.imgur.com/3/image'.freeze
+  IMGUR_CLIENT_ID = 'ae6353455c3635c'
   attr_accessor :image_data
+
+  belongs_to :user
 
   validates :name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
@@ -16,7 +19,7 @@ class Book < ApplicationRecord
   private
     def post(encorded_image)
       response = RestClient.post(IMAGUR_URL, { image: encorded_image, type: 'base64' },
-                               { Authorization: "Client-ID #{Rails.application.secrets.imgur_client_id}"})
+                               { Authorization: "Client-ID #{IMGUR_CLIENT_ID}"})
       return nil unless response.code == 200
 
       json = JSON.parse(response)

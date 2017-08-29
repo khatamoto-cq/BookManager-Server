@@ -3,12 +3,12 @@ class Api::V1::BooksController < Api::V1::ApiBaseController
   before_action :set_book, only: :update
 
   def index
-    @books = Book.all.page(params[:page])
+    @books = current_user.books.all.page(params[:page])
     render json: @books, each_serializer: BookSerializer
   end
 
   def create
-    @book = Book.new(book_params)
+    @book = current_user.books.build(book_params)
     if @book.save
       render json: @book, status: :created
     else

@@ -2,16 +2,16 @@ require 'rails_helper'
 
 describe 'Books API', type: :request do
 
-  before :each do
-    create(:book)
-    create(:book, name: '初めてのPython')
-    create(:book, name: 'Kotlinスタートブック')
-    create(:book, name: 'Effective Android')
-    create(:book, name: 'ドメイン駆動設計')
-  end
-
   let(:user) do
     create(:user)
+  end
+
+  before :each do
+    create(:book, user: user)
+    create(:book, name: '初めてのPython', user: user)
+    create(:book, name: 'Kotlinスタートブック', user: user)
+    create(:book, name: 'Effective Android', user: user)
+    create(:book, name: 'ドメイン駆動設計', user: user)
   end
 
   def authenticated_header
@@ -54,7 +54,7 @@ describe 'Books API', type: :request do
 
   describe "PATCH /api/v1/books/1" do
     it "updates a book" do
-      book = create(:book)
+      book = create(:book, user: user)
       new_attributes = {
         book: {
           name: '詳解Swift第4版',

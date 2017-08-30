@@ -1,10 +1,9 @@
 class Book < ApplicationRecord
   IMAGUR_URL = 'https://api.imgur.com/3/image'.freeze
-  IMGUR_CLIENT_ID = 'ae6353455c3635c'
+  IMGUR_CLIENT_ID = 'ae6353455c3635c'.freeze
+
   attr_accessor :image_data
-
   belongs_to :user
-
   validates :name, presence: true
   validates :price, presence: true, numericality: { only_integer: true }
   validates :purchase_date, date: true, allow_blank: true

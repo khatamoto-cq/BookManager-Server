@@ -52,7 +52,7 @@ describe 'Books API', type: :request do
     end
   end
 
-  describe "PATCH /api/v1/books/1" do
+  describe "PATCH /api/v1/books/:id" do
     it "updates a book" do
       book = create(:book, user: user)
       new_attributes = {

@@ -19,7 +19,8 @@ ActiveRecord::Schema.define(version: 20170901050806) do
     t.datetime "purchase_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id"
+    t.bigint "users_id"
+    t.index ["users_id"], name: "index_books_on_users_id"
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -29,4 +30,5 @@ ActiveRecord::Schema.define(version: 20170901050806) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "books", "users", column: "users_id"
 end

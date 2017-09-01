@@ -11,9 +11,8 @@ describe Book do
     create(:book, user: user)
   end
 
-  # 書籍名、価格、購入日があれば有効な状態であること
-  it "is valid with name, price, and purchase_date" do
-    expect(book).to be_valid
+  describe 'associations' do
+    it { is_expected.to belong_to(:user) }
   end
 
   describe 'validations' do

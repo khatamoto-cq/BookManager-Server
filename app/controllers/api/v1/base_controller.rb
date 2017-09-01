@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ApiBaseController < ApplicationController
+    class BaseController < ApplicationController
       include Knock::Authenticable
     end
   end

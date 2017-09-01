@@ -1,4 +1,4 @@
-class Api::V1::BooksController < Api::V1::ApiBaseController
+class Api::V1::BooksController < Api::V1::BaseController
   before_action :authenticate_user
   before_action :set_book, only: :update
 

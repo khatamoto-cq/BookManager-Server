@@ -68,6 +68,10 @@ GEM
     docile (1.1.5)
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
+    dotenv (2.2.1)
+    dotenv-rails (2.2.1)
+      dotenv (= 2.2.1)
+      railties (>= 3.2, < 5.2)
     email_validator (1.6.0)
       activemodel
     erubi (1.6.1)
@@ -245,6 +249,7 @@ DEPENDENCIES
   byebug
   database_cleaner
   date_validator
+  dotenv-rails
   email_validator
   factory_girl_rails
   faker

@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
 
   def create
-    @user = User.new(email: user_params[:email], password: user_params[:password])
+    @user = User.new(user_params)
     if @user.save
       render json: auth_token, status: :created
     else

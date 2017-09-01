@@ -1,4 +1,4 @@
-class ImgurClient
+class Imgur
   IMGUR_URL = 'https://api.imgur.com/3/image'.freeze
   IMGUR_CLIENT_ID = 'ae6353455c3635c'.freeze
 

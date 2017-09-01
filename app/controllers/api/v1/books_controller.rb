@@ -3,7 +3,7 @@ class Api::V1::BooksController < Api::V1::BaseController
   before_action :set_book, only: :update
 
   def index
-    @books = current_user.books.all.page(params[:page])
+    @books = current_user.books.page(params[:page])
     render json: @books, each_serializer: BookSerializer
   end
 
